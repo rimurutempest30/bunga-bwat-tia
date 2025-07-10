@@ -1,0 +1,24 @@
+modules = ["web", "nodejs-20"]
+run = "RUN"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "RUN"]
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 14330314
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx serve . -p 5000"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
